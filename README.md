@@ -2,7 +2,6 @@
 
 # 预览
 ![Image text](https://github.com/vipmadu/ant-admin/raw/master/src/assets/demo/login.png)
-![Image text](https://github.com/vipmadu/ant-admin/raw/master/src/assets/demo/index.png)
 ![Image text](https://github.com/vipmadu/ant-admin/raw/master/src/assets/demo/news.png)
 ![Image text](https://github.com/vipmadu/ant-admin/raw/master/src/assets/demo/auto.png)
 ![Image text](https://github.com/vipmadu/ant-admin/raw/master/src/assets/demo/menu.png)
