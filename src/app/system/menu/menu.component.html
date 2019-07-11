@@ -1,0 +1,149 @@
+<page [title]="'菜单管理'">
+    <nz-breadcrumb [style.marginBottom.px]="24">
+        <nz-breadcrumb-item>
+            首页
+        </nz-breadcrumb-item>
+        <nz-breadcrumb-item>
+            <a>菜单管理</a>
+        </nz-breadcrumb-item>
+    </nz-breadcrumb>
+    <div nz-row [nzGutter]="16">
+
+        <div nz-col nzXs="24">
+            <nz-card nzTitle="菜单列表">
+                <div nz-row nzGutter="16" [style.marginBottom.px]="24">
+                    <div nz-col class="gutter-row" nzSpan="24">
+                        <div class="gutter-box">
+                            <div>
+                                <a class="ant-btn btn-create" (click)="newMenu()"><i nz-icon type="plus"></i> 添加</a>
+                                <a class="ant-btn" [style.marginLeft.px]="5"  (click)="initData()"> <i nz-icon type="redo"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <nz-spin [nzSpinning]="isLoading">
+                    <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'">
+                        <nz-tab [nzTitle]="'前台菜单'">
+                            <nz-tree [nzData]="menuSite" [nzExpandAll]="true" [nzDraggable]="true" (nzClick)="menuClick($event)" (nzOnDrop)="nzEvent($event)"> </nz-tree>
+                        </nz-tab>
+                        <nz-tab [nzTitle]="'页脚菜单'">
+                            <nz-tree [nzData]="menuFooter" [nzExpandAll]="true" [nzDraggable]="true" (nzClick)="menuClick($event)" (nzOnDrop)="nzEvent($event)"> </nz-tree>
+                        </nz-tab>
+                        <nz-tab [nzTitle]="'后台菜单'">
+                            <nz-tree [nzData]="menuBack" [nzExpandAll]="true" [nzDraggable]="true" (nzClick)="menuClick($event)" (nzOnDrop)="nzEvent($event)">
+                            </nz-tree>
+                        </nz-tab>
+                    </nz-tabset>
+                </nz-spin>
+            </nz-card>
+        </div>
+        
+
+        <nz-modal  nzWidth="800" [(nzVisible)]="isVisible" [nzFooter]="modalFooter" (nzAfterClose)="handleCancel()" nzTitle="菜单" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+            <div  nz-row [nzGutter]="16">
+                <form nz-form>
+                    <div nz-col class="gutter-row" nzXl="12" nzXs="12" >
+                        <div class="gutter-box">
+                            <nz-form-item>
+                                <nz-form-label>模块</nz-form-label>
+                                <nz-form-control>
+                                    <nz-radio-group name="app" [nzDisabled]="selectMenu.id != null" [(ngModel)]="selectMenu.app" (ngModelChange)="handleAppChange()">
+                                        <label nz-radio-button [nzValue]="'Home'">主菜单</label>
+                                        <label nz-radio-button [nzValue]="'Footer'">页脚菜单</label>
+                                        <label nz-radio-button [nzValue]="'Admin'">后台</label>
+                                    </nz-radio-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                    <div nz-col class="gutter-row" nzXl="12" nzXs="12" >
+                        <div class="gutter-box">
+                            <nz-form-item class="nz-form-item">
+                                <nz-form-label class="nz-formlable">是否隐藏</nz-form-label>
+                                <nz-form-control>
+                                    <nz-switch  name="hidden" [(ngModel)]="selectMenu.hidden"></nz-switch>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                    <div nz-col class="gutter-row" nzXl="12" nzXs="12" >
+                        <div class="gutter-box">
+                            <nz-form-item>
+                                <nz-form-label>父级</nz-form-label>
+                                <nz-form-control>
+                                    <nz-tree-select [nzNodes]="parentMenu" name="parent_id" [nzDefaultExpandAll]="true" [(ngModel)]="selectMenu.parent_id">
+                                    </nz-tree-select>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                    <div nz-col class="gutter-row" nzXl="12" nzXs="12" >
+                        <div class="gutter-box">
+                            <nz-form-item>
+                                <nz-form-label>标题</nz-form-label>
+                                <nz-form-control>
+                                    <input nz-input name="title" [(ngModel)]="selectMenu.title" />
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                    <div nz-col class="gutter-row" nzXl="12" nzXs="12">
+                        <div class="gutter-box">
+                            <nz-form-item>
+                                <nz-form-label>图标</nz-form-label>
+                                <nz-form-control>
+                                    <input nz-input name="icon" [(ngModel)]="selectMenu.icon" />
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                    <div nz-col class="gutter-row" nzXl="12" nzXs="12">
+                        <div class="gutter-box">
+                            <nz-form-item>
+                                <nz-form-label>控制器</nz-form-label>
+                                <nz-form-control>
+                                    <input nz-input name="model" [(ngModel)]="selectMenu.model" />
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                    <div nz-col class="gutter-row" nzXl="12" nzXs="12">
+                        <div class="gutter-box">
+                            <nz-form-item>
+                                <nz-form-label>模块</nz-form-label>
+                                <nz-form-control>
+                                    <input nz-input name="action" [(ngModel)]="selectMenu.action" />
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                    <div nz-col class="gutter-row" nzXl="12" nzXs="12">
+                        <div class="gutter-box">
+                            <nz-form-item>
+                                <nz-form-label>参数</nz-form-label>
+                                <nz-form-control>
+                                    <input nz-input name="param" [(ngModel)]="selectMenu.param" />
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                    <div nz-col class="gutter-row" nzXl="12" nzXs="12">
+                        <div class="gutter-box">
+                            <nz-form-item>
+                                <nz-form-label>URL</nz-form-label>
+                                <nz-form-control>
+                                    <input nz-input name="url" [(ngModel)]="selectMenu.url" />
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </nz-modal>
+        <ng-template #modalFooter>
+            <button *ngIf="selectMenu.id != null" nz-button nzType="danger" (click)="delItem()">删除</button>
+            <button nz-button nzType="primary" (click)="handleOk()" >保存</button>
+        </ng-template>
+    </div>
+</page>

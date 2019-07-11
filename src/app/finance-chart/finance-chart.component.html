@@ -1,0 +1,46 @@
+<page [title]="'财务统计'">
+
+    <nz-breadcrumb  [style.marginBottom.px]="24">
+        <nz-breadcrumb-item>
+            首页
+        </nz-breadcrumb-item>
+        <nz-breadcrumb-item>
+            <a>财务统计</a>
+        </nz-breadcrumb-item>
+    </nz-breadcrumb>
+
+
+    <div nz-row [nzGutter]="16" [style.marginBottom.px]="24">
+        <div nz-col class="gutter-row" nzXl="12" nzXs="24"  [style.marginBottom.px]="24">
+            <nz-card [nzBordered]="false" nzTitle="2019">
+                <canvas baseChart  [datasets]="barChartData2019" [labels]="barChartLabels2019" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            </nz-card>
+        </div>
+        <div nz-col class="gutter-row" nzXl="12" nzXs="24"  [style.marginBottom.px]="24">
+            <nz-card [nzBordered]="false" nzTitle="2018">
+                <canvas baseChart  [datasets]="barChartData2018" [labels]="barChartLabels2018" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            </nz-card>
+        </div>
+        <div nz-col class="gutter-row" nzXl="12" nzXs="24"  [style.marginBottom.px]="24">
+            <nz-card [nzBordered]="false" nzTitle="2017">
+                <canvas baseChart  [datasets]="barChartData2017" [labels]="barChartLabels2017" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            </nz-card>
+        </div>
+        <div nz-col class="gutter-row" nzXl="12" nzXs="24"  [style.marginBottom.px]="24">
+            <nz-card [nzBordered]="false" nzTitle="2016">
+                <canvas baseChart  [datasets]="barChartData2016" [labels]="barChartLabels2016" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            </nz-card>
+        </div>
+        <div nz-col class="gutter-row" nzXl="12" nzXs="24"  [style.marginBottom.px]="24">
+            <nz-card [nzBordered]="false" nzTitle="2015">
+                <canvas baseChart  [datasets]="barChartData2015" [labels]="barChartLabels2015" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            </nz-card>
+        </div>
+        <div nz-col class="gutter-row" nzXl="12" nzXs="24"  [style.marginBottom.px]="24">
+            <nz-card [nzBordered]="false" nzTitle="2014">
+                <canvas baseChart  [datasets]="barChartData2014" [labels]="barChartLabels2014" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            </nz-card>
+        </div>
+    </div>
+
+</page>

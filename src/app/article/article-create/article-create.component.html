@@ -1,0 +1,152 @@
+<page [title]="'编辑'">
+    <nz-breadcrumb [style.marginBottom.px]="24">
+        <nz-breadcrumb-item>
+            首页
+        </nz-breadcrumb-item>
+        <nz-breadcrumb-item>
+            <a>内容管理</a>
+        </nz-breadcrumb-item>
+        <nz-breadcrumb-item>
+            编辑
+        </nz-breadcrumb-item>
+    </nz-breadcrumb>
+    
+    <nz-spin  [nzSpinning]="isLoading">
+
+
+        <div nz-row [nzGutter]="16"  [style.marginBottom.px]="24">
+            <form nz-form>
+                <div nz-col class="gutter-row"  nzXl="18" nzXs="24"  [style.marginBottom.px]="24">
+                    <div class="gutter-box">
+                        <nz-card [nzBordered]="false">
+                            <div nz-col class="gutter-row" nzXl="12" nzXs="12" >
+                                <div class="gutter-box">
+                                    <nz-form-item class="nz-form-item">
+                                        <nz-form-label class="nz-formlable" nzFor="title">标题</nz-form-label>
+                                        <nz-form-control>
+                                            <input nz-input name="title" [(ngModel)]="article.title" type="text">
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                            <div nz-col class="gutter-row" nzXl="12" nzXs="12" >
+                                <div class="gutter-box">
+                                    <nz-form-item class="nz-form-item">
+                                        <nz-form-label class="nz-formlable">分类</nz-form-label>
+                                        <nz-form-control>
+                                            <nz-tree-select [nzNodes]="category" name="category" [nzDefaultExpandAll]="true" [(ngModel)]="article.category">
+                                            </nz-tree-select>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                            <div nz-col class="gutter-row" nzXl="12" nzXs="12" >
+                                <div class="gutter-box">
+                                    <nz-form-item class="nz-form-item">
+                                        <nz-form-label class="nz-formlable">作者</nz-form-label>
+                                        <nz-form-control>
+                                            <input nz-input name="author" [(ngModel)]="article.author" type="text">
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                            <div nz-col class="gutter-row" nzXl="24" nzXs="24" >
+                                <div class="gutter-box">
+                                    <nz-form-item class="nz-form-item">
+                                        <nz-form-label class="nz-formlable">内容</nz-form-label>
+                                        <nz-form-control>
+                                            <textarea nz-input name="content" [(ngModel)]="article.content" rows="10">{{article.content}}</textarea>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                            
+                            <div nz-col class="gutter-row" nzXl="24" nzXs="24" >
+                                <div class="gutter-box">
+                                    <nz-form-item class="nz-form-item">
+                                        <nz-form-label class="nz-formlable" nzFor="remark">简介</nz-form-label>
+                                        <nz-form-control>
+                                            <textarea nz-input  name="remark" [(ngModel)]="article.remark" rows="4">{{article.remark}}</textarea>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                            
+                            
+                            <div nz-col class="gutter-row" nzXl="24" nzXs="24" >
+                                <div class="gutter-box">
+                                    <nz-form-item>
+                                        <nz-form-control>
+                                            <button (click)="doSubmit()" nz-button nzType="primary">保存</button>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                        </nz-card>
+                    </div>
+                </div>
+                <div nz-col class="gutter-row"  nzXl="6" nzXs="24"  [style.marginBottom.px]="24">
+                    <div nz-row [nzGutter]="16" [style.marginBottom.px]="24">
+                        <nz-card  id="c1" [nzBordered]="false">
+                            <div nz-col class="gutter-row" nzXl="24" nzXs="24" >
+                                <div class="gutter-box">
+                                    <nz-form-item class="nz-form-item">
+                                        <nz-form-label class="nz-formlable" nzFor="top">是否置顶</nz-form-label>
+                                        <nz-form-control>
+                                            <nz-switch  name="top" [(ngModel)]="article.top"></nz-switch>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                            <div nz-col class="gutter-row" nzXl="24" nzXs="24" >
+                                <div class="gutter-box">
+                                    <nz-form-item class="nz-form-item">
+                                        <nz-form-label class="nz-formlable" nzFor="title">来源</nz-form-label>
+                                        <nz-form-control>
+                                            <input nz-input name="from" [(ngModel)]="article.from" type="text">
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                            <div nz-col class="gutter-row" nzXl="24" nzXs="24" >
+                                <div class="gutter-box">
+                                    <nz-form-item class="nz-form-item">
+                                        <nz-form-label class="nz-formlable" nzFor="remark">封面图片</nz-form-label>
+                                        <nz-form-control>
+                                            <nz-upload 
+                                                nzAction="{{file_upload_url}}" 
+                                                nzListType="picture-card" 
+                                                [(nzFileList)]="fileList" 
+                                                [nzShowButton]="fileList.length < 1" 
+                                                [nzShowUploadList]="showUploadList" 
+                                                [nzMultiple]="false"
+                                                (nzChange)="handleChange($event)"
+                                            >
+                                                <i nz-icon nzType="plus"></i>
+                                                <div class="ant-upload-text">上传</div>
+                                            </nz-upload>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                            <div nz-col class="gutter-row" nzXl="24" nzXs="24" >
+                                <div class="gutter-box">
+                                    <nz-form-item class="nz-form-item">
+                                        <nz-form-label class="nz-formlable" nzFor="title">链接</nz-form-label>
+                                        <nz-form-control>
+                                            <textarea nz-input  name="link" [(ngModel)]="article.link" rows="2">{{article.link}}</textarea>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+
+                        </nz-card>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </nz-spin>
+</page>

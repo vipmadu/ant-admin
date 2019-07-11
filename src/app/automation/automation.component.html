@@ -1,0 +1,145 @@
+<page [title]="'控制面板'">
+    <nz-breadcrumb  [style.marginBottom.px]="24">
+        <nz-breadcrumb-item>
+            首页
+        </nz-breadcrumb-item>
+        <nz-breadcrumb-item>
+            <a>控制面板</a>
+        </nz-breadcrumb-item>
+    </nz-breadcrumb>
+
+
+    <nz-card nzTitle="用户列表"  [class.hide]="isVisible" [style.marginBottom.px]="24">
+        <div nz-row nzGutter="16" [style.marginBottom.px]="24">
+            <div nz-col class="gutter-row" nzSpan="12">
+                <div class="gutter-box">
+                    <div>
+                        <a class="ant-btn btn-create" (click)="newUser()"><i nz-icon type="plus"></i> 添加</a>
+                        <a class="ant-btn" [style.marginLeft.px]="5" (click)="initData()"> <i nz-icon type="redo"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div nz-col class="gutter-row" nzPush="8" nzSpan="4">
+                <div class="gutter-box">
+                    <div [style.float]="'right'">
+                        <nz-input-group [nzSuffix]="suffixIconSearch">
+                            <input type="text" nz-input placeholder="搜索" />
+                        </nz-input-group>
+                        <ng-template #suffixIconSearch>
+                            <i nz-icon type="search"></i>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <nz-spin [nzSpinning]="isLoading">
+        <nz-table nzBordered [nzData]="automations"  [nzShowPagination]="false" [style.marginBottom.px]="24">
+            <thead>
+                <tr>
+                    <th>ID编号</th>
+                    <th>标题</th>
+                    <th>简介</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of automations">
+                    <td>{{item.id}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.remark}}</td>
+                    <td>{{item.add_time}}</td>
+                    <td>
+                        <nz-tag (click)="editAutomation(item)" [style.marginRight.px]="10"><i nz-icon type="form"></i> 编辑</nz-tag>
+                        <nz-tag (click)="delListItem(item.id)"><i nz-icon type="delete"></i> 删除</nz-tag >
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+        </nz-spin>
+        <div [style.marginBottom.px]="24">
+            <nz-pagination (nzPageIndexChange)="nzPageIndexChange($event)" (nzPageSizeChange)="nzPageSizeChange($event)" [nzPageIndex]="page" nzShowSizeChanger [nzPageSize]="num" [nzTotal]="total_page*num"></nz-pagination>
+        </div>
+    </nz-card>
+
+
+
+
+
+
+
+                
+<div nz-row [nzGutter]="16" [class.hide]="!isVisible" [style.marginBottom.px]="24">
+    <div nz-col class="gutter-row infopannel" nzXl="6">
+
+        <!-- 保存按钮 -->
+        <button class="saveBtn" nz-button (click)="doSave()" nzType="default" [style.marginRight.px]="24">保存</button>
+        <button class="saveBtn" nz-button (click)="claseAutomation()" nzType="default" >关闭</button>
+
+
+        <!-- 元素面板栏 -->
+        <div id="itempannel" class="itempannel">
+            <a class="getItem" data-type="node" data-shape="flow-circle" data-size="72*72" data-label="触发器" data-color="#FA8C16">
+                <img draggable="false" src="./assets/images/node/circle.svg" srcset="">
+            </a>
+            <a class="getItem" data-type="node" data-shape="flow-rect" data-size="120*48" data-label="执行" data-color="#1890FF">
+                <img draggable="false" src="./assets/images/node/rect.svg" srcset="">
+            </a>
+            <a class="getItem" data-type="node" data-shape="flow-rhombus" data-size="80*72" data-label="判断" data-color="#13C2C2">
+                <img draggable="false" src="./assets/images/node/rhombus.svg" srcset="">
+            </a>
+            <!-- <a class="getItem" data-type="node" data-shape="flow-capsule" data-size="80*48" data-label="人群" data-color="#722ED1">
+                <img draggable="false" src="./assets/images/node/capsule.svg" srcset="">
+            </a> -->
+        </div>
+
+        
+        <!-- 详细面板 -->
+        <div id="detailpannel" class="detailpannel" [class.hide]="hideLableEdit">
+            <form nz-form>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>标签</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                        <input nz-input name="label" [(ngModel)]="selectItem.label" (ngModelChange)="labelChange($event)" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>类型</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                        <input nz-input name="event_type" [(ngModel)]="selectItem.event_type" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24">动作</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                        <input nz-input name="event_action" [(ngModel)]="selectItem.event_action" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24">数据</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                        <textarea nz-input rows="4" name="event_data" [(ngModel)]="selectItem.event_data">{{selectItem.event_data}}</textarea>
+                    </nz-form-control>
+                </nz-form-item>
+            </form>
+        </div>
+
+    </div>
+    <div nz-col class="gutter-row" nzXl="18">
+        <!-- 主画布 -->
+        <div id="page" class="content-pannel"></div>
+    </div>
+</div>
+      
+                            
+
+
+
+
+
+
+
+    
+
+</page>

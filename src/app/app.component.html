@@ -1,0 +1,53 @@
+<layout [(collapsed)]="layout.collapsed" [siderMode]="layout.siderMode" [topMode]="layout.topMode()" [setting]="layout.setting">
+    <ng-container sider>
+        <div class="logo" [class.light]="layout.setting.theme == 'light'">
+            <a routerLink="/">
+                <img alt="logo" class="logo-icon" src="./assets/images/logo-ng.svg">
+                <img alt="logo" [class.hide]="layout.collapsed" src="./assets/images/logo-text.png">
+            </a>
+        </div>
+        <navbar [data]="user.menu" [inlineCollapsed]="layout.siderMode == 'over' ? false : layout.collapsed"></navbar>
+    </ng-container>
+    <ng-container header>
+        <toolbar>
+            <ng-container left *ngIf="!layout.topMode()">
+                <i nz-icon class="anticon trigger" [type]="layout.collapsed ? 'menu-unfold' : 'menu-fold'" (click)="layout.collapsed=!layout.collapsed"></i>
+            </ng-container>
+            <ng-container left *ngIf="layout.topMode()">
+                <div class="logo">
+                    <h1>ANTD ADMIN</h1>
+                </div>
+                <navbar [data]="user.menu" mode="horizontal"></navbar>
+            </ng-container>
+            <ng-container right>
+                <nz-dropdown nzPlacement="bottomRight" *ngIf="user.loginUser">
+                    <span nz-dropdown class="action account">
+                        <nz-avatar nzSize="small" nzSrc="{{user.loginUser?.image_url}}"></nz-avatar>
+                        <span class="name" *ngIf="user.loginUser?.name">{{ user.loginUser?.name }}</span>
+                    </span>
+                    <ul nz-menu>
+                        <li nz-menu-item routerLink="/">
+                            <i nz-icon type="user"></i>个人中心
+                        </li>
+                        <li nz-menu-item routerLink="/system/help">
+                            <i nz-icon type="setting"></i>帮助
+                        </li>
+                        <li nz-menu-divider></li>
+                        <li nz-menu-item (click)="logout()">
+                            <i nz-icon type="logout"></i>退出登录
+                        </li>
+                    </ul>
+                </nz-dropdown>
+                <setting-drawer [(setting)]="layout.setting" [innerClass]="{ action: true, setting: true }">
+                    <i nz-icon type="setting"></i>
+                </setting-drawer>
+            </ng-container>
+        </toolbar>
+    </ng-container>
+    <ng-container content>
+        <router-outlet></router-outlet>
+    </ng-container>
+    <ng-container footer>
+        <div style="text-align: center;">Copyright ©2018 Powered By Jeff</div>
+    </ng-container>
+</layout>
