@@ -2,8 +2,11 @@
 
 # 预览
 ![Image text](https://github.com/vipmadu/ant-admin/raw/master/src/assets/demo/login.png)
+
 ![Image text](https://github.com/vipmadu/ant-admin/raw/master/src/assets/demo/news.png)
+
 ![Image text](https://github.com/vipmadu/ant-admin/raw/master/src/assets/demo/auto.png)
+
 ![Image text](https://github.com/vipmadu/ant-admin/raw/master/src/assets/demo/menu.png)
 
 
@@ -16,8 +19,6 @@
 * 用户管理
 * 菜单
 
-# 联系
-* [邮箱](vipmadu@qq.com)
 
 # 安装
 npm install
