@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
                     localStorage.setItem('menu',JSON.stringify(res.menu));
 
                     this.router.navigateByUrl('/');
-                    this.message.info('登录成功！');
+                    // this.message.success(res.msg);
                 } else {
                     this.message.create('error',res.msg);
                 }

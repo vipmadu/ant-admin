@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from '@angular/router';
 import { NzMessageService,UploadFile } from 'ng-zorro-antd';
-import { HttpService } from '../../shared/shared.module';
-import { Article } from '../../model/article';
-import {environment } from '../../../environments/environment';
+import { HttpService } from '../shared/shared.module';
+import { Article } from '../model/article';
+import {environment } from '../../environments/environment';
 
 @Component({
 	selector: 'app-article-create',
@@ -24,9 +24,7 @@ export class ArticleCreateComponent implements OnInit {
 	id:string;
 	isLoading = true;
 	article = new Article;
-	category:[];
-
-
+	category = [];
 
     // 文件上传
     file_upload_url = environment.api+'/common/upload';

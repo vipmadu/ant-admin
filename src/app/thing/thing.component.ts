@@ -32,23 +32,30 @@ export class ThingComponent implements OnInit {
     total_page:number;
     isLoading = false;
     selectThing = new Thing;
+    category = [];
+    selectCate = '';
 
 	// 初始化基础数据
     initData() {
         this.isLoading = true;
 
         //网络请求
-        this.http.get( '/thing',{ page:this.page,num:this.num } )
+        this.http.get( '/thing',{ page:this.page,num:this.num,category:this.selectCate } )
             .then( (res:any ) => {
                 this.things = res.data;
                 this.total_page = Number(res.total_page);
-
+                this.category = res.category;
             }).catch((msg : string) => {
                 this.message.error(msg);
             })
             .finally( () => {
                 this.isLoading = false;
             })
+    }
+
+    setCate(value){
+        this.selectCate = value;
+        this.initData();
     }
 
     
@@ -142,7 +149,8 @@ export class ThingComponent implements OnInit {
         thing.title = item.title;
         thing.date = item.date;
         thing.content = item.content;
-
+        thing.category = item.category;
+        
         this.selectThing = thing;
         this.showModal();
     }

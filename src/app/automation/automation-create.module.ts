@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 import { SharedModule } from '~/shared/shared.module';
-import { AutomationRoutingModule } from './automation-routing.module';
-import { AutomationComponent } from './automation.component';
+import { AutomationCreateRoutingModule } from './automation-create-routing.module';
+import { AutomationCreateComponent } from './automation-create.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -13,8 +13,8 @@ import { FormsModule } from '@angular/forms';
 		NgZorroAntdModule,
 		SharedModule,
 		FormsModule,
-		AutomationRoutingModule
+		AutomationCreateRoutingModule
 	],
-	declarations: [AutomationComponent]
+	declarations: [AutomationCreateComponent]
 })
-export class AutomationModule { }
+export class AutomationCreateModule { }

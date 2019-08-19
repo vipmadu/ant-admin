@@ -41,6 +41,7 @@
             <thead>
                 <tr>
                     <th>ID编号</th>
+                    <th>头像</th>
                     <th>昵称</th>
                     <th>简介</th>
                     <th>用户名</th>
@@ -52,6 +53,7 @@
             <tbody>
                 <tr *ngFor="let item of users">
                     <td>{{item.id}}</td>
+                    <td><nz-avatar nzIcon="user" nzSrc="{{item.image_url}}"></nz-avatar></td>
                     <td>{{item.nickname}}</td>
                     <td>{{item.profile}}</td>
                     <td>{{item.username}}</td>

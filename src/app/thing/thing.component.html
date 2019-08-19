@@ -13,6 +13,9 @@
     <ng-template #moreTemplate>
         <a class="ant-btn" (click)="newThing()"><i nz-icon type="plus"></i></a>
         <a class="ant-btn" [style.marginLeft.px]="5" (click)="initData()"> <i nz-icon type="redo"></i></a>
+        <nz-select (ngModelChange)="setCate($event)" name="selectCate" [(ngModel)]="selectCate" style="margin-left:5px;width: 120px;"  nzAllowClear>
+            <nz-option *ngFor="let item of category"  nzValue="{{item.id}}" nzLabel="{{item.title}}"></nz-option>
+        </nz-select>
     </ng-template>
 
     <nz-modal [(nzVisible)]="isVisible" nzTitle="菜单" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
@@ -28,6 +31,13 @@
                     <nz-form-label>日期</nz-form-label>
                     <nz-form-control>
                         <nz-date-picker name="date" [(ngModel)]="selectThing.date"></nz-date-picker>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label class="nz-formlable">分类</nz-form-label>
+                    <nz-form-control>
+                        <nz-tree-select name="category" [(ngModel)]="selectThing.category" [nzNodes]="category" [nzDefaultExpandAll]="true">
+                        </nz-tree-select>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>

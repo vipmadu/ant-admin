@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../shared/shared.module';
+import { HttpService } from '../shared/shared.module';
 import { NzMessageService,NzModalService,NzNotificationService } from 'ng-zorro-antd';
 
 
@@ -38,12 +38,21 @@ export class ArticleListComponent implements OnInit {
         this.initData();
     }
 
+    sort:string;
+    order:string;
+    sortChange(sort: { key: string; value: string }): void {
+        this.sort = sort.key;
+        this.order = sort.value == 'descend'?'desc':'asc';
+        this.initData();
+    }
+
+
     // 初始化基础数据
     initData() {
         this.isLoading = true;
 
         //网络请求
-        this.http.get( '/article',{ page:this.page,num:this.num } )
+        this.http.get( '/article',{ page:this.page,num:this.num,sort:this.sort,order:this.order } )
             .then( (res:any ) => {
                 if( res.code == 0 ){
                     this.articles = res.data;
