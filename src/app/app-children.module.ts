@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { LoginModule } from './login/login.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 
-import { ArticleListModule   } from './article/article-list.module';
+import { ArticleModule   } from './article/article.module';
 import { ArticleCreateModule } from './article/article-create.module';
 
 import { FinanceModule } from './finance/finance.module';
@@ -25,7 +25,7 @@ import { AutomationCreateModule } from './automation/automation-create.module';
 	    DashboardModule,
 	    LoginModule,
 	    HelpModule,
-	    ArticleListModule,
+	    ArticleModule,
 	    ArticleCreateModule,
 	    ErrorModule,
 	    MenuModule,

@@ -4,12 +4,12 @@ import { NzMessageService,NzModalService,NzNotificationService } from 'ng-zorro-
 
 
 @Component({
-    selector: 'app-article-list',
-    templateUrl: './article-list.component.html',
-    styleUrls: ['./article-list.component.less'],
+    selector: 'app-article',
+    templateUrl: './article.component.html',
+    styleUrls: ['./article.component.less'],
     providers: [HttpService]
 })
-export class ArticleListComponent implements OnInit {
+export class ArticleComponent implements OnInit {
 
     constructor(
         private http: HttpService,

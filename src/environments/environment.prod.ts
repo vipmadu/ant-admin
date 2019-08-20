@@ -1,6 +1,6 @@
 //
 export const environment = {
 	production: true,
-	api:'http://laravel.demos.net.cn/api',
-	site:'http://laravel.demos.net.cn'
+	api:'http://api.f.com/api',
+	site:'http://api.f.com/'
 };

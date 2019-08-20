@@ -7,6 +7,7 @@ import { ArticleCreateRoutingModule } from './article-create-routing.module';
 import { ArticleCreateComponent } from './article-create.component';
 
 import { FormsModule } from '@angular/forms';
+import { NgxTinymceModule } from 'ngx-tinymce';
 
 @NgModule({
   imports: [
@@ -14,6 +15,9 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     NgZorroAntdModule,
     SharedModule,
+    NgxTinymceModule.forRoot({
+        baseURL: '//cdnjs.cloudflare.com/ajax/libs/tinymce/4.9.0/',
+    }),
     ArticleCreateRoutingModule
   ],
   declarations: [ArticleCreateComponent]

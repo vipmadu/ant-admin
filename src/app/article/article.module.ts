@@ -3,16 +3,16 @@ import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 import { SharedModule } from '~/shared/shared.module';
-import { ArticleListRoutingModule } from './article-list-routing.module';
-import { ArticleListComponent } from './article-list.component';
+import { ArticleRoutingModule } from './article-routing.module';
+import { ArticleComponent } from './article.component';
 
 @NgModule({
   imports: [
     CommonModule,
     NgZorroAntdModule,
     SharedModule,
-    ArticleListRoutingModule
+    ArticleRoutingModule
   ],
-  declarations: [ArticleListComponent]
+  declarations: [ArticleComponent]
 })
-export class ArticleListModule { }
+export class ArticleModule { }

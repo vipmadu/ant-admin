@@ -58,7 +58,7 @@
                                     <nz-form-item class="nz-form-item">
                                         <nz-form-label class="nz-formlable">内容</nz-form-label>
                                         <nz-form-control>
-                                            <textarea nz-input name="content" [(ngModel)]="article.content" rows="10">{{article.content}}</textarea>
+                                            <tinymce name="content" [(ngModel)]="article.content" rows="10" [config]="config">{{article.content}}</tinymce>
                                         </nz-form-control>
                                     </nz-form-item>
                                 </div>

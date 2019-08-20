@@ -231,7 +231,7 @@ export class AutomationCreateComponent implements OnInit {
             .then( (res:any ) => {
                 if (res.code == 0) {
                     
-                    this.closeAutomation();
+                    // this.closeAutomation();
                     this.initData();
 
                     this.message.create('success',res.msg);
