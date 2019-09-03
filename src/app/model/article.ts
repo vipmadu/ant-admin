@@ -9,6 +9,10 @@ export class Article {
 	public image_url:string;
 	public author:string;
 	public category:string;
+	public category_id:string;
+	public category_title:string;
 	public top:string;
 	public link:string;
+	public checked:boolean;
+	public hidden:any;
 }
