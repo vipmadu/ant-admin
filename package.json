@@ -26,7 +26,7 @@
         "@antv/l7": "^1.1.11",
         "chart.js": "^2.7.0",
         "core-js": "^2.5.4",
-        "marked": "^0.6.2",
+        "marked": "^1.1.1",
         "ng-zorro-antd": "^7.4.1",
         "ng2-charts": "^1.6.0",
         "ngx-tinymce": "^7.0.0",
